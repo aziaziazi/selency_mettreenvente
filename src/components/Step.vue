@@ -10,18 +10,23 @@
       <div class="stepNumber">{{stepNumber}}</div>
       <div class="imageContainer">
         <!-- toodo: add label -->
-        <img src="../assets/logo.png">
+        <img v-bind:src="imageSource">
       </div>
-      <div class="centerLine"/>
+      <CenterLine />
     </div>
 </template>
 
 <script>
+import CenterLine from './CenterLine'
+
 export default {
   name: 'Step',
+  components: {
+    CenterLine,
+  },
   props: {
     stepNumber: {
-      type: String,
+      type: Number,
       required: true
     },
     stepText: {
@@ -36,6 +41,10 @@ export default {
       type: Boolean,
       required: false,
       default: false,
+    },
+    imageSource: {
+      type: String,
+      required: false,
     }
   },
 }
@@ -52,25 +61,17 @@ export default {
     margin: 0 0 0.2em;
   }
 
-  .centerLine {
-    position: absolute;
-    left: calc(50% - 1px);
-    height: 100%;
-    width: 0;
-    border-left: 2px solid black;
-    z-index: -1;
-  }
-
  .stepContainer {
    display: flex;
    justify-content: center;
    align-items: flex-start;
    position: relative;
+   padding-bottom: 50px;
  }
 
 .textContainer, .imageContainer {
   flex: 1 1 50%;
-  max-width: 500px;
+  max-width: 280px;
 }
 
 .textContainer {
@@ -79,8 +80,12 @@ export default {
 }
 
 .imageContainer {
-  float: left;
   order: 3;
+}
+
+.imageContainer > img {
+  float: left;
+  width: 65px;
 }
 
 .textOnRight > .textContainer {
@@ -90,6 +95,10 @@ export default {
 
 .textOnRight > .imageContainer {
   order: 1;
+}
+
+.textOnRight > .imageContainer > img {
+  float: right;
 }
 
 .stepNumber {
@@ -103,7 +112,7 @@ export default {
   text-align: center;
   vertical-align: middle;
   order: 2;
-  margin: 0 40px;
+  margin: 0 30px;
 }
 
 </style>
