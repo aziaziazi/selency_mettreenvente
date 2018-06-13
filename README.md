@@ -8,3 +8,4 @@ job test for Selency
 * use sass to use variables (colors & fonts) and nested tags
 * find better icons
 * cleanup svgs
+* update favicon
